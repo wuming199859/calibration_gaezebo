@@ -2,6 +2,7 @@
 calibration_gaezebo
 
 1、标定
+
  roslaunch husky_gazebo husky_user_world.launch
  
 roslaunch velo2cam_calibration mono_pattern.launch camera_name:=/realsense/color image_topic:=image_raw frame_name:=camera_realsense_gazebo
