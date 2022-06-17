@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="calibration_whiteqr">
+<xacro:macro name="calibration_whiteqr" params="parent name *origin">
+   <!-- Base Link -->
+    <joint name="${name}_base_mount_joint" type="fixed">
+      <xacro:insert_block name="origin" /> 
+      <parent link="${parent}"/>
+      <child link="${name}_link"/>
+    </joint>
+    
+    <link name="${name}_link">
+      <inertial>
+        <mass value="0.1"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <mesh filename="model://calibration_whiteqr_pattern/meshes/whitebig.stl" />
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <mesh filename="model://calibration_whiteqr_pattern/meshes/whitebig.dae" />
+        </geometry>
+      </visual>
+    </link>
+    <gazebo reference="${name}_link">
+      <static>true</static>
+      <turnGravityOff>false</turnGravityOff>
+    </gazebo>
+</xacro:macro>	 
+</robot>
